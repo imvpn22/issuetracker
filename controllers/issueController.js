@@ -1,41 +1,45 @@
 const _ = require('lodash');
-var issues = require('../data/issues.json');
+const issues = require('../data/issues.json');
 
-var currentID = 3;
-var _clone = function(item) {
+const currentID = 3;
+const _clone = function(item) {
   return JSON.parse(JSON.stringify(item));
 };
 
-class IssueController {
 
-  getAllIssues = function(callback) {
-    callback(null, _clone(issues));
-  };
-
-  getIssueById = function(id, callback) {
-    var issue = _.find(issues, {id: parseInt(id)});
-    callback (null, _clone(issue));
-  };
-
-  updateIssueById = function(id, issue, callback) {
-    var existingIssueIndex = _.indexOf(issues, _.find(issues, {id: parseInt(id)}));
-    issue.id = parseInt(id);
-    issues.splice(existingIssueIndex, 1, issue);
-    callback (null);
-  };
-
-  saveIssue = function(issue, callback) {
-    currentID = currentID + 1;
-        issue.id = currentID;
-        issues.push(issue);
-    callback(null, _clone(issue));
-  };
-
-  deleteIssueById = function(id, callback) {
-    _.remove(issues, { id: parseInt(id)});
-    callback(null);
-  };
-
+getAllIssues = (callback) => {
+  callback(null, _clone(issues));
 };
 
-module.exports = IssueController;
+getIssueById = (id, callback) => {
+  let issue = _.find(issues, {id: parseInt(id)});
+  callback (null, _clone(issue));
+};
+
+updateIssueById = (id, issue, callback) => {
+  let existingIssueIndex = _.indexOf(issues, _.find(issues, {id: parseInt(id)}));
+  issue.id = parseInt(id);
+  issues.splice(existingIssueIndex, 1, issue);
+  callback (null);
+};
+
+saveIssue = (issue, callback) => {
+  currentID = currentID + 1;
+      issue.id = currentID;
+      issues.push(issue);
+  callback(null, _clone(issue));
+};
+
+deleteIssueById = (id, callback) => {
+  _.remove(issues, { id: parseInt(id)});
+  callback(null);
+};
+
+
+module.exports = IssueController = {
+   getAllIssues: getAllIssues,
+   getIssueById: getIssueById,
+   updateIssueById: updateIssueById,
+   saveIssue: saveIssue,
+   deleteIssueById: deleteIssueById
+};
