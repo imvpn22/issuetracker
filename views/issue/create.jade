@@ -1,0 +1,27 @@
+doctype
+html
+  head
+    title Add new issue
+  body
+    h3 Issue Details
+    form(id='form', method='post', action='/issue/create')
+      label(for='description') Description
+      input(type='text', id='description', name='description')
+      <br/><br/>
+      label(for='severity') Severity
+       select(name='severity')
+         each severity in severities
+            option(value=severity) #{severity}
+      <br/><br/>
+      label(for='status') Status
+      select(name='status')
+         each status in statuses
+            option(value=status) #{status}
+      <br/><br/>
+      label(for='createdDate') Created Date
+      input(type='date', id='createdDate', name='createdDate')
+      <br/><br/>
+      label(for='resolvedDate') Resolved Date
+      input(type='date', id='resolvedDate', name='resolvedDate')
+      <br/><br/>
+      input(type='submit', value='Add Issue')

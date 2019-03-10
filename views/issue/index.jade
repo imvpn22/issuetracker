@@ -1,0 +1,29 @@
+doctype
+html
+  head
+    title=title
+  body
+    h3 Issues
+    table
+      tr
+        th Description
+        th Severity
+        th Status
+        th Created Date
+        th Resolved Date
+        th Edit
+        th Delete
+      each item in issues
+        tr
+          td #{item.description}
+          td #{item.severity}
+          td #{item.status}
+          td #{item.createdDate}
+          td #{item.resolvedDate}
+          td
+            a(href='/issue/edit/#{item.id}') Edit
+          td
+            a(href='/issue/delete/#{item.id}') Delete
+    p
+    #menu
+      a(href='/issue/create') Add new issue

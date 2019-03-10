@@ -1,0 +1,27 @@
+doctype
+html
+  head
+    title Edit existing issue
+  body
+    h3 Issue Details
+    form(id='form', method='post', action='/issue/edit/#{issue.id}')
+      label(for='description') Description 
+      input(type='text', id='description', name='description', value='#{issue.description}')
+      <br/><br/>
+      label(for='severity') Severity
+        select(name='severity')
+         each severity in severities
+            option(value=severity selected=(severity === issue.severity)) #{severity}
+      <br/><br/>
+      label(for='status') Status
+      select(name='status')
+        each status in statuses
+            option(value=status selected=(status === issue.status)) #{status}
+      <br/><br/>
+      label(for='createdDate') Created Date
+      input(type='text', id='createdDate', name='createdDate', value='#{issue.createdDate}')
+      <br/><br/>
+      label(for='resolvedDate') Resolved Date
+      input(type='text', id='resolvedDate', name='resolvedDate', value='#{issue.resolvedDate}')
+      <br/><br/>
+      input(type='submit', value='Update Issue')
