@@ -1,6 +1,6 @@
 "use strict";
 
-var issues = require('./issueData').issues;
+var issues = require('./issues.json');
 var _ = require('lodash');
 
 var currentID = 3;

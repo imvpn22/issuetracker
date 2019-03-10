@@ -1,9 +1,8 @@
-doctype
-html
-  head
-    title=title
-  body
-    h3 Issues
+extends ../layout
+
+block content
+  h2.center Issues
+  div.table-box
     table
       tr
         th Description
@@ -21,9 +20,14 @@ html
           td #{item.createdDate}
           td #{item.resolvedDate}
           td
-            a(href='/issue/edit/#{item.id}') Edit
+            a(href='/issue/edit/#{item.id}')
+              button.btn-info Edit
           td
-            a(href='/issue/delete/#{item.id}') Delete
-    p
-    #menu
-      a(href='/issue/create') Add new issue
+            a(href='/issue/delete/#{item.id}')
+              button.btn-danger Delete
+
+  div.menu
+    a(href='/issue/create')
+      button.btn-success Add new issue
+    a(href='/')
+      button Home

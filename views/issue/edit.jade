@@ -1,27 +1,36 @@
-doctype
-html
-  head
-    title Edit existing issue
-  body
-    h3 Issue Details
-    form(id='form', method='post', action='/issue/edit/#{issue.id}')
-      label(for='description') Description 
-      input(type='text', id='description', name='description', value='#{issue.description}')
-      <br/><br/>
-      label(for='severity') Severity
+extends ../layout
+
+block content
+    form(class='form' id='form', method='post', action='/issue/edit/#{issue.id}')
+      h3 Edit Issue Details
+
+      div.form-group
+        label(for='description') Description
+        input(type='text', id='description', name='description', value='#{issue.description}')
+
+      div.form-group
+        label(for='severity') Severity
         select(name='severity')
-         each severity in severities
+          each severity in severities
             option(value=severity selected=(severity === issue.severity)) #{severity}
-      <br/><br/>
-      label(for='status') Status
-      select(name='status')
-        each status in statuses
-            option(value=status selected=(status === issue.status)) #{status}
-      <br/><br/>
-      label(for='createdDate') Created Date
-      input(type='text', id='createdDate', name='createdDate', value='#{issue.createdDate}')
-      <br/><br/>
-      label(for='resolvedDate') Resolved Date
-      input(type='text', id='resolvedDate', name='resolvedDate', value='#{issue.resolvedDate}')
-      <br/><br/>
-      input(type='submit', value='Update Issue')
+
+      div.form-group
+        label(for='status') Status
+        select(name='status')
+          each status in statuses
+              option(value=status selected=(status === issue.status)) #{status}
+
+      div.form-group
+        label(for='createdDate') Created Date
+        input(type='date', id='createdDate', name='createdDate', value='#{issue.createdDate}')
+
+      div.form-group
+        label(for='resolvedDate') Resolved Date
+        input(type='date', id='resolvedDate', name='resolvedDate', value='#{issue.resolvedDate}')
+
+      div.form-group
+        button(class='btn btn-success' type='submit', value='Add Issue') Save
+
+    div.menu
+      a(href='/issue')
+        button.btn.btn-danger Go Back

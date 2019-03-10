@@ -1,8 +1,117 @@
 body {
-  padding: 50px;
+  margin: 0 auto;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
+  /* min-height: 100vh; */
+  padding: 2em 0;
+}
+
+.container {
+  padding: 1em 4em;
+  /* text-align: center; */
+}
+.center {
+  text-align: center;
 }
 
 a {
-  color: #00B7FF;
+  /* color: #00B7FF; */
+}
+
+button {
+  background: #ccc;
+  cursor: pointer;
+  padding: 7px 14px;
+  font-family: monospace !important;
+  text-transform: uppercase !important;
+  font-size: .9em;
+  border: none;
+  color: #666;
+  margin: 1em !important;
+  border-radius: 4px !important;
+  /* box-shadow: 2px 4px 15px 0px #ccc; */
+  /* transition: all .4s ease-in-out; */
+}
+
+button:hover {
+  color: #333;
+  /* box-shadow: 0px 0px 2px 0px #eee; */
+}
+
+/* ------------------------- */
+/* Style for Issue List Page */
+.table-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+table, tr, th, td {
+  margin: 0;
+  border:  1px solid #ddd;
+  border-spacing: 0;
+}
+th, td {
+  padding: .5em 1em;
+}
+td a button {
+  box-shadow: none;
+  transition: none;
+  margin: 0 !important;
+}
+.btn-primary {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #286090;
+  border-color: #204d74;
+  color: #fff;
+}
+.btn-danger {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  color: #fff;
+}
+.btn-danger:hover {
+  background-color: #c9302c;
+  border-color: #ac2925;
+  color: #fff;
+}
+.btn-success {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.btn-success:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+.menu {
+  text-align: center;
+}
+
+/* ------------------------- */
+/* Style for Issue Edit Page */
+
+.form {
+  background-color: #eee;
+  padding: 2em;
+  border-radius: 5px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.form-group{
+  margin: 1em;
+  display: flex;
+}
+.form-group label {
+  width: 30%;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 70%;
 }

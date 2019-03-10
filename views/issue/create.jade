@@ -1,27 +1,38 @@
-doctype
-html
-  head
-    title Add new issue
-  body
-    h3 Issue Details
-    form(id='form', method='post', action='/issue/create')
+extends ../layout
+
+block content
+  form(class='form' id='form', method='post', action='/issue/create')
+    h3.center Add Issue Details
+
+    div.form-group
       label(for='description') Description
-      input(type='text', id='description', name='description')
-      <br/><br/>
+      textarea(type='text', id='description', name='description' placeholder='Describe issue' required)
+
+    div.form-group
       label(for='severity') Severity
-       select(name='severity')
-         each severity in severities
+      select(name='severity' required)
+        option(value='') Select
+        each severity in severities
             option(value=severity) #{severity}
-      <br/><br/>
+
+    div.form-group
       label(for='status') Status
-      select(name='status')
-         each status in statuses
+      select(name='status' required)
+        option(value='') Select
+        each status in statuses
             option(value=status) #{status}
-      <br/><br/>
+
+    div.form-group
       label(for='createdDate') Created Date
       input(type='date', id='createdDate', name='createdDate')
-      <br/><br/>
+
+    div.form-group
       label(for='resolvedDate') Resolved Date
       input(type='date', id='resolvedDate', name='resolvedDate')
-      <br/><br/>
-      input(type='submit', value='Add Issue')
+
+    div.form-group
+      button(class='btn btn-success' type='submit', value='Add Issue') Add Issue
+
+  div.menu
+    a(href='/issue')
+      button.btn.btn-danger Go Back
