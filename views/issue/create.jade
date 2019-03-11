@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  form(class='form' id='form', method='post', action='/issue/create')
+  form(class='form' id='form', method='post', action='/issues/create')
     h3.center Add Issue Details
 
     div.form-group
@@ -34,5 +34,5 @@ block content
       button(class='btn btn-success' type='submit', value='Add Issue') Add Issue
 
   div.menu
-    a(href='/issue')
+    a(href='/issues')
       button.btn.btn-danger Go Back

@@ -5,6 +5,7 @@ block content
   div.table-box
     table
       tr
+        th ID
         th Description
         th Severity
         th Status
@@ -12,22 +13,23 @@ block content
         th Resolved Date
         th Edit
         th Delete
-      each item in issues
+      each issue in issues
         tr
-          td #{item.description}
-          td #{item.severity}
-          td #{item.status}
-          td #{item.createdDate}
-          td #{item.resolvedDate}
+          td #{issue.id}
+          td #{issue.description}
+          td #{issue.severity}
+          td #{issue.status}
+          td #{issue.createdDate}
+          td #{issue.resolvedDate}
           td
-            a(href='/issue/edit/#{item.id}')
+            a(href='/issues/edit/#{issue.id}')
               button.btn-info Edit
           td
-            a(href='/issue/delete/#{item.id}')
+            a(href='/issues/delete/#{issue.id}')
               button.btn-danger Delete
 
   div.menu
-    a(href='/issue/create')
+    a(href='/issues/create')
       button.btn-success Add new issue
     a(href='/')
       button Home

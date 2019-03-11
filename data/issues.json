@@ -1,29 +1,29 @@
 [{
   "id": 1,
-  "description": "Production Server down.",
+  "description": "Server is not running",
   "severity": "Critical",
   "status": "Closed",
-  "createdDate": "26-01-2019",
-  "resolvedDate": "26-01-2019"
+  "createdDate": "2019-01-01",
+  "resolvedDate": "2019-01-05"
 }, {
   "id": 2,
   "description": "Printer not working",
   "severity": "Minor",
   "status": "Open",
-  "createdDate": "26-01-2019",
-  "resolvedDate": "26-01-2019"
+  "createdDate": "2019-01-03",
+  "resolvedDate": "2019-03-05"
 }, {
   "id": 3,
-  "description": "Network issue at Hyderabad SEZ location updated",
-  "severity": "Minor",
-  "status": "Closed",
-  "createdDate": "26-01-2019",
-  "resolvedDate": "21-02-2019"
+  "description": "Complete the project",
+  "severity": "Major",
+  "status": "In Progress",
+  "createdDate": "2019-02-05",
+  "resolvedDate": "2019-03-25"
 }, {
   "id": 6,
-  "description": "Mouse not working2",
+  "description": "Connect to front-end app",
   "severity": "Minor",
   "status": "Open",
-  "createdDate": "26-01-2019",
-  "resolvedDate": "00-00-0000"
+  "createdDate": "2019-03-05",
+  "resolvedDate": ""
 }]

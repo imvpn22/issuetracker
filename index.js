@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const issueRouter = require('./routes/issue');
+const issuesRouter = require('./routes/issues');
 
 const PORT = process.env.PORT || 3000;
 
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Setting up routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/issue', issueRouter);
+app.use('/issues', issuesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

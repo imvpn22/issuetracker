@@ -30,7 +30,7 @@ router.post('/create', function(req, res) {
   };
 
   IssueController.saveIssue(issue, function(err, issue) {
-    res.redirect('/issue');
+    res.redirect('/issues');
   });
 });
 
@@ -43,7 +43,6 @@ router.get('/edit/:id', function(req, res) {
       statuses: ["Open", "In Progress", "Closed"]
     });
   });
-
 });
 
 router.post('/edit/:id', function(req, res) {
@@ -56,13 +55,13 @@ router.post('/edit/:id', function(req, res) {
   };
 
   IssueController.updateIssueById(req.params.id, updatedIssue, function(err) {
-    res.redirect('/issue');
+    res.redirect('/issues');
   });
 });
 
 router.get('/delete/:id', function(req, res) {
   IssueController.deleteIssueById(req.params.id, function(err) {
-    res.redirect('/issue');
+    res.redirect('/issues');
   });
 });
 

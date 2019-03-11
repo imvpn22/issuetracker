@@ -1,11 +1,11 @@
 const _ = require('lodash');
 const issues = require('../data/issues.json');
 
-const currentID = 3;
 const _clone = function(item) {
   return JSON.parse(JSON.stringify(item));
 };
 
+let currentID = issues.length;
 
 getAllIssues = (callback) => {
   callback(null, _clone(issues));
