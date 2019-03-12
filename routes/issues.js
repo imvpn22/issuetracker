@@ -4,11 +4,14 @@ const router = express.Router();
 const IssueController = require('../controllers/issueController');
 
 router.get('/', function(req, res) {
-  IssueController.getAllIssues(function(err, items) {
-    res.render('issue/index', {
-      title: 'All Issues | Issuetracker',
-      issues: items
-    });
+  IssueController.getAllIssues(function(err, issues) {
+    // res.render('issue/index', {
+    //   title: 'All Issues | Issuetracker',
+    //   issues: items
+    // });
+
+    res.json(issues);
+
   });
 });
 
