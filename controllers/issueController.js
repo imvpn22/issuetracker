@@ -11,6 +11,12 @@ getAllIssues = (callback) => {
   callback(null, _clone(issues));
 };
 
+getFilteredIssues = (query, callback) => {
+  let re = new RegExp(query, 'i');
+  let filteredIssues = _.filter(issues, issue => re.test(issue.description));
+  callback(null, _clone(filteredIssues));
+};
+
 getIssueById = (id, callback) => {
   let issue = _.find(issues, {id: parseInt(id)});
   callback (null, _clone(issue));
@@ -41,5 +47,6 @@ module.exports = IssueController = {
    getIssueById: getIssueById,
    updateIssueById: updateIssueById,
    saveIssue: saveIssue,
-   deleteIssueById: deleteIssueById
+   deleteIssueById: deleteIssueById,
+   getFilteredIssues: getFilteredIssues
 };

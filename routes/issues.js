@@ -4,13 +4,26 @@ const router = express.Router();
 const IssueController = require('../controllers/issueController');
 
 router.get('/', function(req, res) {
-  IssueController.getAllIssues(function(err, issues) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json(issues);
-    }
-  });
+
+  let q = req.query.q;
+  if (q && q.length > 1) {
+    IssueController.getFilteredIssues(q, function(err, issues) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(issues);
+      }
+    });
+  } else {
+    IssueController.getAllIssues(function(err, issues) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(issues);
+      }
+    });
+  }
+
 });
 
 router.post('/', function(req, res) {
