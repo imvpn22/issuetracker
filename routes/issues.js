@@ -5,25 +5,15 @@ const IssueController = require('../controllers/issueController');
 
 router.get('/', function(req, res) {
   IssueController.getAllIssues(function(err, issues) {
-    // res.render('issue/index', {
-    //   title: 'All Issues | Issuetracker',
-    //   issues: items
-    // });
-
-    res.json(issues);
-
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(issues);
+    }
   });
 });
 
-router.get('/create', function(req, res) {
-	res.render('issue/create', {
-    title: "Add Issue | Issuetracker",
-    severities: ["Minor", "Major", "Critical"] ,
-    statuses: ["Open", "In Progress", "Closed"]
-  });
-});
-
-router.post('/create', function(req, res) {
+router.post('/', function(req, res) {
   let issue = {
     description: req.body.description,
     severity: req.body.severity,
@@ -33,22 +23,25 @@ router.post('/create', function(req, res) {
   };
 
   IssueController.saveIssue(issue, function(err, issue) {
-    res.redirect('/issues');
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(issue);
+    }
   });
 });
 
-router.get('/edit/:id', function(req, res) {
+router.get('/:id', function(req, res) {
   IssueController.getIssueById(req.params.id, function(err, issue) {
-    res.render('issue/edit', {
-      title: "Edit Issue | Issuetracker",
-      issue: issue ,
-      severities: ["Minor", "Major", "Critical"] ,
-      statuses: ["Open", "In Progress", "Closed"]
-    });
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(issue);
+    }
   });
 });
 
-router.post('/edit/:id', function(req, res) {
+router.put('/:id', function(req, res) {
   let updatedIssue = {
     description: req.body.description,
     severity: req.body.severity,
@@ -57,14 +50,22 @@ router.post('/edit/:id', function(req, res) {
     resolvedDate: req.body.resolvedDate
   };
 
-  IssueController.updateIssueById(req.params.id, updatedIssue, function(err) {
-    res.redirect('/issues');
+  IssueController.updateIssueById(req.params.id, updatedIssue, function(err, issue) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(issue);
+    }
   });
 });
 
-router.get('/delete/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
   IssueController.deleteIssueById(req.params.id, function(err) {
-    res.redirect('/issues');
+    if (err) {
+      res.send(err);
+    } else {
+      res.json({status: 'Delete success'});
+    }
   });
 });
 

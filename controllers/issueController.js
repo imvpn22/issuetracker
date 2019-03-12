@@ -20,7 +20,7 @@ updateIssueById = (id, issue, callback) => {
   let existingIssueIndex = _.indexOf(issues, _.find(issues, {id: parseInt(id)}));
   issue.id = parseInt(id);
   issues.splice(existingIssueIndex, 1, issue);
-  callback (null);
+  callback (null, _clone(issue));
 };
 
 saveIssue = (issue, callback) => {
