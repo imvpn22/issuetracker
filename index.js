@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -18,6 +19,20 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
+
+// .env setup
+dotenv.config({
+  path: __dirname + '/.env'
+});
+
+//setting up mongoose
+mongoose.connect(`${process.env.MONGO_URL}`, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log('MongoDB connection success!!');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

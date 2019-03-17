@@ -1,47 +1,29 @@
-const _ = require('lodash');
-// const issues = require('../data/issues.json');
-const issues = [];
+// const _ = require('lodash');
+const Issue = require('../models/issue');
 
-const _clone = function(item) {
-  return JSON.parse(JSON.stringify(item));
+getAllIssues = (cb) => {
+  Issue.find({}, cb);
 };
 
-let currentID = issues.length;
-
-getAllIssues = (callback) => {
-  callback(null, _clone(issues));
+getFilteredIssues = (query, cb) => {
+  Issue.find({name: query}, cb)
 };
 
-getFilteredIssues = (query, callback) => {
-  let re = new RegExp(query, 'i');
-  let filteredIssues = _.filter(issues, issue => re.test(issue.description));
-  callback(null, _clone(filteredIssues));
+getIssueById = (id, cb) => {
+  Issue.findById(id, cb);
 };
 
-getIssueById = (id, callback) => {
-  let issue = _.find(issues, {id: parseInt(id)});
-  callback (null, _clone(issue));
+updateIssueById = (id, issue, cb) => {
+  Issue.findByIdAndUpdate(id, issue, cb);
 };
 
-updateIssueById = (id, issue, callback) => {
-  let existingIssueIndex = _.indexOf(issues, _.find(issues, {id: parseInt(id)}));
-  issue.id = parseInt(id);
-  issues.splice(existingIssueIndex, 1, issue);
-  callback (null, _clone(issue));
+saveIssue = (issue, cb) => {
+  Issue.create(issue, cb);
 };
 
-saveIssue = (issue, callback) => {
-  currentID = currentID + 1;
-      issue.id = currentID;
-      issues.push(issue);
-  callback(null, _clone(issue));
+deleteIssueById = (id, cb) => {
+  Issue.findByIdAndRemove(id, cb);
 };
-
-deleteIssueById = (id, callback) => {
-  _.remove(issues, { id: parseInt(id)});
-  callback(null);
-};
-
 
 module.exports = IssueController = {
    getAllIssues: getAllIssues,
