@@ -6,10 +6,13 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const issuesRouter = require('./routes/issues');
+
+const Issue = require('./models/issue');
 
 const PORT = process.env.PORT || 3000;
 

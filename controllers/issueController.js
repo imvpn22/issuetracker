@@ -1,5 +1,6 @@
 const _ = require('lodash');
-const issues = require('../data/issues.json');
+// const issues = require('../data/issues.json');
+const issues = [];
 
 const _clone = function(item) {
   return JSON.parse(JSON.stringify(item));
