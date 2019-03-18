@@ -16,17 +16,18 @@ const issuesRouter = require('./routes/issues');
 const Issue = require('./models/issue');
 
 const PORT = process.env.PORT || 3000;
+const MONGO_URL = process.env.MONGO_URL || `mongodb://localhost:27017/issuetracker`
 
 const app = express();
 app.use(cors());
 
-// .env setup
+// .env setup | Add a .env file if error
 dotenv.config({
   path: __dirname + '/.env'
 });
 
 //setting up mongoose
-mongoose.connect(`${process.env.MONGO_URL}`, { useNewUrlParser: true });
+mongoose.connect(MONGO_URL, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
