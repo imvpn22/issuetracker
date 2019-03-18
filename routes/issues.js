@@ -17,10 +17,8 @@ router.get('/', function(req, res) {
   } else {
     IssueController.getAllIssues(function(err, issues) {
       if (err) {
-        console.log(err);
         res.send(err);
       } else {
-        console.log(issues);
         res.json(issues);
       }
     });
