@@ -8,12 +8,10 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const issuesRouter = require('./routes/issues');
 
 const PORT = process.env.PORT || 8080;
-const MONGO_URL = process.env.MONGO_URL || `mongodb://localhost:27017/issuetracker`
+const MONGO_URL = process.env.MONGO_URL || `mongodb://localhost:27017/issuetracker`;
 
 const app = express();
 app.use(cors());
@@ -23,34 +21,29 @@ dotenv.config({
   path: __dirname + '/.env'
 });
 
-//setting up mongoose
-mongoose.connect(MONGO_URL, { useNewUrlParser: true });
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
-  console.log('MongoDB connection success!!');
+// Mongoose setup
+mongoose.connect(MONGO_URL, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+}).then(() => {
+    console.log('---- MongoDB connected ----');
+}).catch(err => {
+    console.log(err);
 });
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Setting up routers
-app.use('/index', indexRouter);
-app.use('/users', usersRouter);
 app.use('/issues', issuesRouter);
 
-/* GET home page. */
-app.get('/', function(req, res, next) {
-    res.send(`
-        <h1> Isssue Tracker </h1>
-        <p> Welcome to issuetracker </p>
-    `);
+// Express static
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
