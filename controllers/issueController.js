@@ -16,7 +16,8 @@ localUpdate = (err, issues) => {
 };
 
 getFilteredIssues = (query, cb) => {
-  Issue.find({name: query}, cb)
+  let re = new RegExp(query, 'i');
+  Issue.find({description: re}, cb)
 };
 
 getIssueById = (id, cb) => {
